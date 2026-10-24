@@ -1,0 +1,383 @@
+<title>START — курс фотографии</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow reading column; the programme is a darkroom test strip, six bands from light to dense */
+:root{
+  --bg:#F1F0ED; --surface:#FAF9F7; --fg:#171614; --muted:#67635D; --line:#D8D5CF;
+  --accent:#B3301C; --accent-ink:#FFFFFF; --accent-soft:rgba(179,48,28,.09);
+  --d1:#E6E3DE; --d2:#C9C5BE; --d3:#A29D95; --d4:#76716A; --d5:#4A4642; --d6:#24221F;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"Golos Text",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121110; --surface:#1A1917; --fg:#ECEAE5; --muted:#9C978F; --line:#2D2B28;
+  --accent:#E2573E; --accent-ink:#140B09; --accent-soft:rgba(226,87,62,.12);
+  --d1:#3A3733; --d2:#4C4944; --d3:#68645E; --d4:#8C8780; --d5:#B5B0A8; --d6:#E2DFD9;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121110; --surface:#1A1917; --fg:#ECEAE5; --muted:#9C978F; --line:#2D2B28;
+  --accent:#E2573E; --accent-ink:#140B09; --accent-soft:rgba(226,87,62,.12);
+  --d1:#3A3733; --d2:#4C4944; --d3:#68645E; --d4:#8C8780; --d5:#B5B0A8; --d6:#E2DFD9;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.15;text-wrap:balance;margin:0}
+h2{font-size:clamp(26px,4vw,38px);letter-spacing:-.01em}
+h3{font-size:18px}
+p{margin:0}
+.mono{font-family:var(--mono);font-size:13px;letter-spacing:.02em}
+.eyebrow{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+section{padding-block:72px;border-top:1px solid var(--line)}
+.lead{font-size:clamp(18px,2.2vw,21px);color:var(--fg);max-width:60ch}
+.muted{color:var(--muted)}
+
+/* header */
+body > header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.brand{font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:.02em;text-decoration:none}
+.brand span{color:var(--muted);font-weight:400}
+.nav{display:flex;gap:20px;align-items:center}
+.nav a{text-decoration:none;font-size:15px;color:var(--muted)}
+.nav a:hover{color:var(--fg)}
+@media (max-width:640px){.nav .hide-s{display:none}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;font:500 16px/1 var(--body);padding:15px 22px;border-radius:2px;border:1px solid var(--fg);background:transparent;color:var(--fg);text-decoration:none;cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:hover{filter:brightness(1.06)}
+.btn:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.btn.small{padding:10px 16px;font-size:14px}
+
+/* hero */
+.hero{padding-block:56px 64px;border-top:0}
+.hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:end}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr;gap:32px}}
+.obscura{position:relative;line-height:.82;user-select:none}
+.word{font-family:var(--display);font-weight:800;font-size:clamp(88px,17vw,196px);letter-spacing:-.04em;display:block}
+.word.ghost{transform:scale(-1,-1);color:transparent;-webkit-text-stroke:1px var(--d3);opacity:.9;margin-top:6px}
+.pinhole{display:flex;align-items:center;gap:12px;margin:18px 0 14px}
+.pinhole i{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
+.pinhole span{height:1px;background:var(--line);flex:1}
+.hero-copy{display:grid;gap:22px;min-width:0}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.facts div{background:var(--bg);padding:14px 16px}
+.facts b{display:block;font-family:var(--display);font-weight:600;font-size:22px}
+.facts small{color:var(--muted);font-size:14px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.exif{display:flex;flex-wrap:wrap;gap:18px;color:var(--muted)}
+
+/* method */
+.cols3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:40px}
+@media (max-width:760px){.cols3{grid-template-columns:1fr;gap:24px}}
+.step{display:grid;gap:10px;border-top:2px solid var(--fg);padding-top:16px}
+.step .mono{color:var(--accent)}
+.split{display:grid;grid-template-columns:1fr 1.3fr;gap:48px}
+@media (max-width:760px){.split{grid-template-columns:1fr;gap:24px}}
+.checks{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.checks li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start}
+.checks li::before{content:"";width:12px;height:12px;margin-top:7px;border:1.5px solid var(--accent);border-radius:50%}
+.checks li.no::before{border-color:var(--muted);background:linear-gradient(45deg,transparent 45%,var(--muted) 45%,var(--muted) 55%,transparent 55%)}
+
+/* test strip programme */
+.strip{display:grid;grid-template-columns:repeat(6,1fr);margin-top:40px;border:1px solid var(--line)}
+.strip div{height:56px;display:flex;align-items:flex-end;padding:8px 10px;font-family:var(--mono);font-size:12px}
+.strip div:nth-child(1){background:var(--d1);color:var(--fg)}
+.strip div:nth-child(2){background:var(--d2);color:var(--fg)}
+.strip div:nth-child(3){background:var(--d3);color:var(--bg)}
+.strip div:nth-child(4){background:var(--d4);color:var(--bg)}
+.strip div:nth-child(5){background:var(--d5);color:var(--bg)}
+.strip div:nth-child(6){background:var(--d6);color:var(--bg)}
+.strip-note{display:flex;justify-content:space-between;color:var(--muted);margin-top:8px}
+.blocks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:28px}
+@media (max-width:860px){.blocks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.blocks{grid-template-columns:1fr}}
+.block{background:var(--surface);padding:22px 20px 24px;display:grid;gap:12px;align-content:start;min-width:0}
+.block header{all:unset;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.block .num{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.block ol{margin:0;padding:0;list-style:none;display:grid;gap:7px;font-size:15px}
+.block li{display:grid;grid-template-columns:34px 1fr;gap:6px}
+.block li span{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.block .task{font-size:14px;color:var(--muted);border-top:1px dashed var(--line);padding-top:12px}
+.final{margin-top:20px;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:baseline;padding:18px 20px;background:var(--accent-soft);border:1px solid var(--line)}
+.final b{font-family:var(--display);font-weight:600}
+
+/* week */
+.week{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:40px;border-top:1px solid var(--fg)}
+@media (max-width:760px){.week{grid-template-columns:1fr}}
+.day{padding:18px 20px 0 0;display:grid;gap:8px;position:relative}
+.day::before{content:"";position:absolute;top:-5px;left:0;width:9px;height:9px;border-radius:50%;background:var(--bg);border:1.5px solid var(--fg)}
+.day.on::before{background:var(--accent);border-color:var(--accent)}
+@media (max-width:760px){.day{padding:18px 0 20px 0}}
+
+/* formats */
+.formats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:40px}
+@media (max-width:700px){.formats{grid-template-columns:1fr}}
+.fmt{border:1px solid var(--line);background:var(--surface);padding:28px 24px;display:grid;gap:18px;align-content:start}
+.fmt.vip{border-color:var(--fg)}
+.fmt .price{font-family:var(--mono);font-size:14px;color:var(--muted)}
+.fmt ul{margin:0;padding-left:18px;display:grid;gap:6px}
+
+/* authors */
+.authors{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+@media (max-width:760px){.authors{grid-template-columns:1fr;gap:28px}}
+.addr{border-left:2px solid var(--accent);padding-left:16px;display:grid;gap:4px}
+
+/* faq */
+.faq{margin-top:32px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:18px 0;display:flex;justify-content:space-between;gap:16px;font-weight:500}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--mono);color:var(--muted)}
+.faq details[open] summary::after{content:"−"}
+.faq details p{padding:0 0 20px;color:var(--muted);max-width:65ch}
+
+/* form */
+.apply{display:grid;grid-template-columns:1fr 1.3fr;gap:48px}
+@media (max-width:860px){.apply{grid-template-columns:1fr;gap:28px}}
+form{display:grid;gap:16px;min-width:0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:560px){.row2{grid-template-columns:1fr}}
+label{display:grid;gap:6px;font-size:14px;color:var(--muted)}
+input,select,textarea{font:inherit;font-size:16px;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:12px 14px;width:100%}
+textarea{min-height:96px;resize:vertical}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:8px}
+legend{font-size:14px;color:var(--muted);margin-bottom:6px}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg label{display:inline-flex;flex-direction:row;align-items:center;gap:8px;color:var(--fg);font-size:15px;border:1px solid var(--line);padding:10px 14px;border-radius:2px;cursor:pointer;background:var(--surface)}
+.seg input{width:auto;accent-color:var(--accent)}
+.err{color:var(--accent);font-size:14px;min-height:1em}
+.done{border:1px solid var(--fg);padding:22px;display:grid;gap:14px;background:var(--surface)}
+.done pre{white-space:pre-wrap;font-family:var(--mono);font-size:13px;margin:0;padding:14px;background:var(--bg);border:1px solid var(--line);overflow-x:auto}
+.tg-line{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+footer{border-top:1px solid var(--line);padding-block:32px 48px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+@media (prefers-reduced-motion:no-preference){
+  .word.ghost{animation:project 1.6s ease-out both}
+  @keyframes project{from{opacity:.25;filter:blur(3px)}to{opacity:.9;filter:none}}
+}
+</style>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top">KANAPLEV+LEIDIK <span>/ START</span></a>
+    <nav class="nav">
+      <a class="hide-s" href="#program">Программа</a>
+      <a class="hide-s" href="#formats">Форматы</a>
+      <a class="hide-s" href="#faq">Вопросы</a>
+      <a class="btn small primary" href="#apply">Записаться</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="obscura" aria-label="START">
+        <p class="eyebrow">Онлайн-курс фотографии</p>
+        <div class="pinhole" aria-hidden="true"><i></i><span></span></div>
+        <span class="word">START</span>
+        <span class="word ghost" aria-hidden="true">START</span>
+      </div>
+      <div class="hero-copy">
+        <p class="lead">Технические основы фотографии простым языком: через изображения, наблюдение и практику. Сначала учимся замечать, потом управлять камерой.</p>
+        <div class="facts">
+          <div><b>27</b><small>видеоуроков по 20–30 минут</small></div>
+          <div><b>~7</b><small>недель в спокойном темпе</small></div>
+          <div><b>7</b><small>живых встреч в Zoom</small></div>
+          <div><b>1</b><small>закрытая группа в Telegram</small></div>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="#apply">Записаться</a>
+          <a class="btn" href="#program">Смотреть программу</a>
+        </div>
+        <p class="exif mono" aria-label="Экспозиция курса"><span>1/125</span><span>f/5.6</span><span>ISO 400</span><span>slow think matter</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="method">
+    <div class="wrap">
+      <p class="eyebrow">Метод</p>
+      <h2 style="margin-top:12px">Техника — инструмент, а не цель</h2>
+      <p class="lead muted" style="margin-top:16px">Мы не гонимся за эффектом. Каждый урок начинается с фотографии, а не с формулы, и заканчивается практикой с вашей камерой.</p>
+      <div class="cols3">
+        <div class="step"><span class="mono">01 · смотрим</span><h3>Изображение первым</h3><p class="muted">Разбираем кадры мастеров и свои: где свет, куда идёт взгляд, что осталось за краем.</p></div>
+        <div class="step"><span class="mono">02 · понимаем</span><h3>Причина и следствие</h3><p class="muted">Выдержка, диафрагма, ISO, фокусное, свет — через понятные связи, без перегруза терминами.</p></div>
+        <div class="step"><span class="mono">03 · пробуем</span><h3>Практика каждую неделю</h3><p class="muted">Один сюжет в нескольких решениях. Сдаёте в Telegram, разбираем вместе в Zoom.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="who">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">Для кого</p>
+        <h2 style="margin-top:12px">Для тех, кто начинает или хочет наконец разобраться</h2>
+      </div>
+      <div style="display:grid;gap:24px;min-width:0">
+        <ul class="checks">
+          <li>Вы снимаете на автомате и хотите понимать, что делает камера</li>
+          <li>Вы купили камеру, но не вышли из режима «Авто»</li>
+          <li>Вам ближе спокойный разговор, чем марафон лайфхаков</li>
+          <li>Вы снимаете на плёнку или хотите попробовать</li>
+        </ul>
+        <div>
+          <p style="font-weight:500;margin-bottom:10px">Что понадобится</p>
+          <ul class="checks">
+            <li>Камера с ручной выдержкой, диафрагмой и ISO. Может быть старой и недорогой</li>
+            <li>Зум или сменные объективы, чтобы сравнивать фокусные расстояния</li>
+            <li class="no">Телефона для технической части недостаточно — для наблюдения он подходит</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="program">
+    <div class="wrap">
+      <p class="eyebrow">Программа</p>
+      <h2 style="margin-top:12px">Шесть блоков, как тестовая полоска в лаборатории</h2>
+      <p class="lead muted" style="margin-top:16px">С каждым блоком плотнее: от выбора камеры до собственной серии в едином подходе.</p>
+      <div class="strip" aria-hidden="true"><div>I</div><div>II</div><div>III</div><div>IV</div><div>V</div><div>VI</div></div>
+      <div class="strip-note mono" aria-hidden="true"><span>неделя 1</span><span>неделя 6–7</span></div>
+      <div class="blocks">
+        <article class="block">
+          <header><h3>Инструмент</h3><span class="num">I · 4 урока</span></header>
+          <ol><li><span>1.1</span>Введение: о нас и курсе</li><li><span>1.2</span>Фотоаппараты: типы и форматы</li><li><span>1.3</span>Плёнка или цифра, проявка и скан</li><li><span>1.4</span>Что выбрать</li></ol>
+          <p class="task">Практика: «Мой инструмент и мой взгляд» — 3–5 кадров обычной жизни</p>
+        </article>
+        <article class="block">
+          <header><h3>Экспозиция</h3><span class="num">II · 5 уроков</span></header>
+          <ol><li><span>2.1</span>Что такое экспозиция</li><li><span>2.2</span>Выдержка</li><li><span>2.3</span>Диафрагма</li><li><span>2.4</span>ISO</li><li><span>2.5</span>Эксперименты с экспозицией</li></ol>
+          <p class="task">Практика: один сюжет — движение, глубина резкости и шум</p>
+        </article>
+        <article class="block">
+          <header><h3>Объективы</h3><span class="num">III · 5 уроков</span></header>
+          <ol><li><span>3.1</span>Фокусное расстояние</li><li><span>3.2</span>Широкоугольный и рыбий глаз</li><li><span>3.3</span>Портретный объектив</li><li><span>3.4</span>Длиннофокусный объектив</li><li><span>3.5</span>Макро и tilt-shift</li></ol>
+          <p class="task">Практика: один сюжет на трёх фокусных и «Один день с 50 мм»</p>
+        </article>
+        <article class="block">
+          <header><h3>Свет</h3><span class="num">IV · 5 уроков</span></header>
+          <ol><li><span>4.1</span>Цветовая температура и баланс белого</li><li><span>4.2</span>Дневной свет</li><li><span>4.3</span>Лампы, LED и смешанный свет</li><li><span>4.4</span>Импульсный свет</li><li><span>4.5</span>Светофильтры</li></ol>
+          <p class="task">Практика: один объект при дневном, искусственном и смешанном свете</p>
+        </article>
+        <article class="block">
+          <header><h3>Композиция</h3><span class="num">V · 4 урока</span></header>
+          <ol><li><span>5.1</span>Что делает кадр сильным</li><li><span>5.2</span>Гармония и баланс</li><li><span>5.3</span>Цвет и свет в композиции</li><li><span>5.4</span>Нарушаем правила</li></ol>
+          <p class="task">Практика: кадр по правилу, кадр с осознанным нарушением, акцент</p>
+        </article>
+        <article class="block">
+          <header><h3>RAW и цвет</h3><span class="num">VI · 4 урока</span></header>
+          <ol><li><span>6.1</span>Почему снимать в RAW</li><li><span>6.2</span>Программы постобработки</li><li><span>6.3</span>Цвет и настроение</li><li><span>6.4</span>Photoshop: да или нет</li></ol>
+          <p class="task">Практика: нейтральная и авторская обработка, экспорт для экрана и печати</p>
+        </article>
+      </div>
+      <div class="final"><b>Финал курса</b><span>Серия из 6–10 фотографий в едином подходе и её разбор на последней встрече.</span></div>
+    </div>
+  </section>
+
+  <section id="week">
+    <div class="wrap">
+      <p class="eyebrow">Ритм недели</p>
+      <h2 style="margin-top:12px">Около 3–4 часов в неделю</h2>
+      <div class="week">
+        <div class="day"><span class="mono muted">Понедельник</span><h3>Новые уроки</h3><p class="muted">Открываются видео блока, задание закреплено в Telegram.</p></div>
+        <div class="day"><span class="mono muted">В течение недели</span><h3>Практика</h3><p class="muted">Смотрите в своём темпе, снимаете, задаёте вопросы в группе.</p></div>
+        <div class="day"><span class="mono muted">До пятницы</span><h3>Сдача работы</h3><p class="muted">Публикуете кадры и короткий текст в ветке своего блока.</p></div>
+        <div class="day on"><span class="mono muted">Суббота или воскресенье</span><h3>Встреча в Zoom</h3><p class="muted">60–90 минут: разбор работ, вопросы, подготовка к следующему блоку.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="formats">
+    <div class="wrap">
+      <p class="eyebrow">Форматы участия</p>
+      <h2 style="margin-top:12px">Группа или индивидуальное сопровождение</h2>
+      <div class="formats">
+        <div class="fmt">
+          <div><p class="eyebrow">Общий</p><h3 style="font-size:24px;margin-top:8px">Группа</h3></div>
+          <ul><li>Все 27 видеоуроков</li><li>Задания после каждого блока</li><li>Закрытая группа в Telegram</li><li>Еженедельный групповой Zoom с разбором работ</li></ul>
+          <p class="price">Стоимость — по запросу</p>
+          <a class="btn" href="https://t.me/StartKLbot?start=grp" target="_blank" rel="noopener">Узнать цену и записаться</a>
+        </div>
+        <div class="fmt vip">
+          <div><p class="eyebrow">VIP</p><h3 style="font-size:24px;margin-top:8px">Индивидуально</h3></div>
+          <ul><li>Всё, что входит в групповой формат</li><li>Персональные консультации</li><li>Подробный индивидуальный разбор работ</li><li>Количество мест ограничено</li></ul>
+          <p class="price">Стоимость — по запросу</p>
+          <a class="btn primary" href="https://t.me/StartKLbot?start=vip" target="_blank" rel="noopener">Узнать цену и записаться</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="authors">
+    <div class="wrap authors">
+      <div>
+        <p class="eyebrow">Кто ведёт</p>
+        <h2 style="margin-top:12px">KANAPLEV+LEIDIK</h2>
+      </div>
+      <div style="display:grid;gap:20px">
+        <p class="lead">Мы художественный дуэт и преподаватели. За плечами многолетняя практика в портрете, коммерческой и авторской фотографии и опыт обучения.</p>
+        <p class="muted">Наша Pracownia Syrenka в Варшаве построена вокруг собственной камеры-обскуры «Сиренка» — самой медленной формы фотографии, которую мы знаем. Из этого опыта вырос и START: спокойный темп, внимание и честная обратная связь.</p>
+        <div class="addr"><span class="mono">Pracownia Syrenka</span><span>ul. Kozia 3/5, Warszawa</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <p class="eyebrow">Вопросы</p>
+      <h2 style="margin-top:12px">Коротко о главном</h2>
+      <div class="faq">
+        <details><summary>Мне нужна дорогая камера?</summary><p>Нет. Нужна камера, на которой можно вручную менять выдержку, диафрагму и ISO. Старая недорогая зеркалка или беззеркалка подойдёт. Прежде чем что-то покупать, покажите нам свою технику — подскажем.</p></details>
+        <details><summary>Можно проходить курс на плёнке?</summary><p>Да. Мы отдельно говорим о плёнке, проявке и сканировании. Плёночные работы можно сдавать с задержкой на проявку.</p></details>
+        <details><summary>Я никогда не снимал в ручном режиме. Это для меня?</summary><p>Да, курс начинается с азов. Можно ошибаться и задавать самые простые вопросы.</p></details>
+        <details><summary>Сколько времени это займёт?</summary><p>Видео одного блока — около 1,5–2 часов, плюс практика и встреча в Zoom на 60–90 минут. Всего около семи недель.</p></details>
+        <details><summary>Чем группа отличается от VIP?</summary><p>В VIP-формате к общей программе добавляются персональные консультации и подробный индивидуальный разбор ваших работ.</p></details>
+        <details><summary>Когда старт ближайшего потока?</summary><p>Даты уточняются. Анонсируем их заранее. Задать вопрос можно боту @StartKLbot или лично @eugene_kanapleidik.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="apply">
+    <div class="wrap apply">
+      <div style="display:grid;gap:16px;align-content:start">
+        <p class="eyebrow">Запись</p>
+        <h2>Записаться на START</h2>
+        <p class="muted">Запись идёт через нашего Telegram-бота. Он расскажет о программе, датах и стоимости, поможет выбрать формат и оплатить, а после оплаты пришлёт ссылку в закрытую группу потока.</p>
+        <div class="tg-line"><span class="muted">Есть вопрос? Напишите лично:</span><a class="mono" href="https://t.me/eugene_kanapleidik" target="_blank" rel="noopener">@eugene_kanapleidik</a></div>
+      </div>
+      <div style="min-width:0;display:grid;gap:20px;align-content:start">
+        <div class="formats" style="margin-top:0">
+          <div class="fmt">
+            <div><p class="eyebrow">Общий</p><h3 style="font-size:22px;margin-top:8px">Группа</h3></div>
+            <a class="btn" href="https://t.me/StartKLbot?start=grp" target="_blank" rel="noopener">Записаться в группу</a>
+          </div>
+          <div class="fmt vip">
+            <div><p class="eyebrow">Индивидуально</p><h3 style="font-size:22px;margin-top:8px">VIP</h3></div>
+            <a class="btn primary" href="https://t.me/StartKLbot?start=vip" target="_blank" rel="noopener">Записаться на VIP</a>
+          </div>
+        </div>
+        <ol class="checks" style="counter-reset:none">
+          <li>Нажмите кнопку — откроется бот @StartKLbot в Telegram</li>
+          <li>Ответьте на пару вопросов: имя и какая у вас камера</li>
+          <li>Оплатите удобным способом и отправьте подтверждение</li>
+          <li>Получите личную ссылку в группу потока</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>START · KANAPLEV+LEIDIK · Pracownia Syrenka, Warszawa</span><span class="mono">slow think matter</span></div>
+</footer>
+
+
