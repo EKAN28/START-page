@@ -268,6 +268,22 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   .cta .btn{height:60px;font-size:15px;padding:0 24px;white-space:normal;text-align:center}
 }
 @media (prefers-reduced-motion:reduce){.ticker-track{animation:none}.btn{transition:none}html{scroll-behavior:auto}}
+
+/* подарок */
+.gift{background:var(--yellow);color:var(--ink)}
+.gift .wrap{padding-top:120px;padding-bottom:120px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:64px;align-items:center}
+.gift h2{font-size:clamp(56px,8.4vw,124px);margin-top:20px}
+.gift .txt p{font-size:21px;line-height:1.45;margin-top:28px;max-width:560px}
+.gift ul{list-style:none;margin-top:28px;border-top:2px solid var(--ink);max-width:560px}
+.gift li{display:flex;gap:18px;padding:12px 0;border-bottom:1px solid rgba(11,11,11,.3);font-size:16px;font-weight:600}
+.gift li .mono{color:var(--red);font-size:12px;font-weight:700;padding-top:3px}
+.gift .btn{margin-top:34px}
+.gift .note{margin-top:14px;font-size:14px;opacity:.7}
+.gift figure{position:relative}
+.gift figure img{width:100%;height:auto;display:block;box-shadow:0 30px 60px -20px rgba(0,0,0,.45);transform:rotate(-2deg)}
+.gift figcaption{margin-top:22px;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.6}
+@media (max-width:1100px){.gift .wrap{grid-template-columns:1fr;gap:48px}}
+@media (max-width:760px){.gift .wrap{padding-top:72px;padding-bottom:72px}.gift .txt p{font-size:18px}.gift figure img{transform:rotate(-1.5deg)}}
 </style>
 </head>
 <body>
@@ -276,7 +292,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   <div class="wrap">
     <a class="logo" href="#top">KANAPLEV+LEIDIK <span class="red">/ SCHOOL</span></a>
     <nav aria-label="Разделы">
-      <a href="#program">Программа</a><a href="#formats">Форматы</a><a href="#about">Кто ведёт</a><a href="#faq">Вопросы</a>
+      <a href="#program">Программа</a><a href="#formats">Форматы</a><a href="#gift">Подарить</a><a href="#about">Кто ведёт</a><a href="#faq">Вопросы</a>
     </nav>
     <a class="btn red" href="#formats">Записаться</a>
   </div>
@@ -285,7 +301,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
 <main id="top">
 <section class="hero">
   <div class="wrap">
-    <div class="kicker"><span class="cap">Онлайн-курс технической фотографии</span><span class="cap mono">Поток 01 · 2026</span></div>
+    <div class="kicker"><span class="cap">Онлайн-курс технической фотографии</span><span class="cap mono">Поток 01 · старт 18 января</span></div>
     <h1>START</h1>
     <div class="hero-grid">
       <div class="hero-text">
@@ -415,7 +431,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
           <ul><li>Все 27 видеоуроков</li><li>Задания после каждого блока</li><li>Закрытая группа в Telegram</li><li>Еженедельный Zoom с разбором работ</li></ul>
         </div>
         <div class="price-row">
-          <div><div class="cap mono red">Ранняя запись · до [дата]</div><div class="pr"><b>390 zł</b><s>500 zł</s></div><div class="cap mono" style="opacity:.55;font-weight:400">после — 500 zł</div></div>
+          <div><div class="cap mono red">Ранняя запись · до 13 января</div><div class="pr"><b>390 zł</b><s>500 zł</s></div><div class="cap mono" style="opacity:.55;font-weight:400">после — 500 zł</div></div>
           <a class="btn ink" href="https://t.me/StartKLbot?start=grp" target="_blank" rel="noopener">Записаться →</a>
         </div>
       </article>
@@ -428,11 +444,33 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
           <ul><li>Всё из группового формата</li><li>Личный созвон до старта + 3 встречи 1:1 в Zoom</li><li>Подробный разбор каждой работы голосом или видео</li><li>Помощь в отборе и сборке финальной серии</li></ul>
         </div>
         <div class="price-row">
-          <div><div class="cap mono vip-early">Ранняя запись · до [дата]</div><div class="pr"><b>990 zł</b><s>1 200 zł</s></div><div class="cap mono" style="opacity:.7;font-weight:400">после — 1 200 zł</div></div>
+          <div><div class="cap mono vip-early">Ранняя запись · до 13 января</div><div class="pr"><b>990 zł</b><s>1 200 zł</s></div><div class="cap mono" style="opacity:.7;font-weight:400">после — 1 200 zł</div></div>
           <a class="btn red" href="https://t.me/StartKLbot?start=vip" target="_blank" rel="noopener">Записаться →</a>
         </div>
       </article>
     </div>
+  </div>
+</section>
+
+<section class="gift" id="gift">
+  <div class="wrap">
+    <div class="txt">
+      <div class="cap red">Подарочный сертификат</div>
+      <h2 class="disp">Подарить<br>START</h2>
+      <p>Курс можно подарить: тому, кто давно присматривается к камере, или тому, кто снимает только на телефон и хочет понимать, что делает. Вы оплачиваете в боте, а мы присылаем именной сертификат с QR-кодом. Его можно распечатать или просто переслать.</p>
+      <ul>
+        <li><span class="mono">01</span>Выберите формат: группа или VIP</li>
+        <li><span class="mono">02</span>Напишите имя получателя и пожелание</li>
+        <li><span class="mono">03</span>Оплатите и получите сертификат</li>
+        <li><span class="mono">04</span>Получатель сканирует QR — и он уже на курсе</li>
+      </ul>
+      <a class="btn ink" href="https://t.me/StartKLbot?start=gift" target="_blank" rel="noopener">Подарить курс →</a>
+      <div class="note">Действует 12 месяцев, на любой поток. Если места в потоке закончились, сертификат переносится на следующий.</div>
+    </div>
+    <figure>
+      <img src="web-gift.jpg" alt="Подарочный сертификат START с именем получателя и QR-кодом" loading="lazy" width="1600" height="1000">
+      <figcaption>Так выглядит сертификат · имя и пожелание — ваши</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -480,7 +518,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
       <div class="q"><h3>Можно проходить курс на плёнке?</h3><p>Да. Мы отдельно говорим о плёнке, проявке и сканировании. Плёночные работы можно сдавать с задержкой на проявку.</p></div>
       <div class="q"><h3>Я никогда не снимал в ручном режиме. Это для меня?</h3><p>Да, курс начинается с азов. Можно ошибаться и задавать самые простые вопросы.</p></div>
       <div class="q"><h3>Сколько времени это займёт?</h3><p>Видео одного блока — около 1,5–2 часов, плюс практика и Zoom на 60–90 минут. Всего около семи недель.</p></div>
-      <div class="q"><h3>Когда старт ближайшего потока?</h3><p>Даты уточняются. Спросите бота <a href="https://t.me/StartKLbot" target="_blank" rel="noopener">@StartKLbot</a> или напишите лично <a href="https://t.me/eugene_kanapleidik" target="_blank" rel="noopener">@eugene_kanapleidik</a>.</p></div>
+      <div class="q"><h3>Когда старт ближайшего потока?</h3><p>Поток 01 стартует в понедельник, 18 января 2027 года. Ранняя цена действует до 13 января включительно. Остались вопросы — спросите бота <a href="https://t.me/StartKLbot" target="_blank" rel="noopener">@StartKLbot</a> или напишите лично <a href="https://t.me/eugene_kanapleidik" target="_blank" rel="noopener">@eugene_kanapleidik</a>.</p></div>
     </div>
   </div>
 </section>
